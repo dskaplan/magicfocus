@@ -16,7 +16,7 @@
   </div>
   <canvas id="effing-focus"  resize='true'></canvas>
 <script>
-  $('html').on('click touch', function(){
+  $('html').on('click touchstart', function(){
     if(paper.projects[0]) {
       paper.view.pause();
     } else {
