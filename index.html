@@ -10,24 +10,22 @@
 </head>
 <body>
   <div id='intro-text'> 
-    <span id='press-play'>press space to play</span>
+    <span id='press-play'>click to play</span>
     <br>
     <span id='tribute'>for my friend colin</span>
   </div>
   <canvas id="fucking-focus"  resize='true'></canvas>
 <script>
-  document.body.onkeyup = function(e){
-    if(e.keyCode == 32){
-      if(paper.projects[0]) {
-        paper.view.pause();
-      } else {
-        $('#intro-text').remove();
-        $('#fucking-focus').show();
-        paper.install(window); 
-        mf();
-      }
+  $(document).on('click', function(){
+    if(paper.projects[0]) {
+      paper.view.pause();
+    } else {
+      $('#intro-text').remove();
+      $('#fucking-focus').show();
+      paper.install(window); 
+      mf();
     }
-  }
+  })
 </script>
 </body>
 </html>
