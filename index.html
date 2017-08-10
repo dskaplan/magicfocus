@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Focus</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.4/paper-full.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="controller.js"></script>
+</head>
+<body>
+  <div id='intro-text'> 
+    <span id='press-play'>press space to play</span>
+    <br>
+    <span id='tribute'>for my friend colin</span>
+  </div>
+  <canvas id="fucking-focus"  resize='true'></canvas>
+<script>
+  document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+      if(paper.projects[0]) {
+        paper.view.pause();
+      } else {
+        $('#intro-text').remove();
+        $('#fucking-focus').show();
+        paper.install(window); 
+        mf();
+      }
+    }
+  }
+</script>
+</body>
+</html>
