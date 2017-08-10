@@ -34,12 +34,14 @@ html, body {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;   
+  background-color: #393E46;
+  color: #EEEEEE;
 }
 #tribute {
   font-size: 16px;
   font-size: 1rem;
   font-variant: small-caps;
-  color: #ddd;
+  color: #00ADB5;
 }
 canvas[resize] {
   width: 100%;
