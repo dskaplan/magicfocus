@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>Magic Focus</title>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.4/paper-full.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="controller.js"></script>
   <link rel="stylesheet" type="text/css" href="magicfocus.css">
 </head>
@@ -15,14 +14,14 @@
     <br>
     <span id='tribute'>for my friend colin</span>
   </div>
-  <canvas id="fucking-focus"  resize='true'></canvas>
+  <canvas id="effing-focus"  resize='true'></canvas>
 <script>
   $('html').on('click touch', function(){
     if(paper.projects[0]) {
       paper.view.pause();
     } else {
       $('#intro-text').remove();
-      $('#fucking-focus').show();
+      $('#effing-focus').show();
       paper.install(window); 
       mf();
     }

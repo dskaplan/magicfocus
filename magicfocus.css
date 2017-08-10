@@ -4,7 +4,6 @@
   url('pressstart2p-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
 html, body {
@@ -12,7 +11,7 @@ html, body {
   height: 100%;
   margin: 0px;
 }
-#fucking-focus {
+#effing-focus {
   background-color: black;
   display: none;
 }
@@ -48,4 +47,3 @@ canvas[resize] {
   height: 100%;
 }
 
-</style>

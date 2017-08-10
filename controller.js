@@ -1,6 +1,6 @@
 function mf() {
 
-  var canvas = document.getElementById('fucking-focus');
+  var canvas = document.getElementById('effing-focus');
 		  paper.setup(canvas);
 
   var width = view.size.width,
