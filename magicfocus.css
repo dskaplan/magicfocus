@@ -15,6 +15,10 @@ html, body {
   background-color: black;
   display: none;
 }
+#start-over {
+  display: none;
+}
+#start-over,
 #intro-text {
   font-family: 'press_start_2pregular', 'monospace';
   font-size: 4rem;

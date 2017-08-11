@@ -23,7 +23,7 @@ function mf() {
       rM = lM.clone();
 
   rM.bounds.leftCenter = c;
-
+  
   if (width * 0.05 > height * 0.05) { var squareStart = new Point(width * 0.05, width * 0.05); }
   else { var squareStart = new Point(height * 0.05, height * 0.05); }
 
@@ -47,12 +47,15 @@ function mf() {
   groupLR.addChildren([lM, rM]);
   groupTB.addChildren([tM, bM]);
 
+  var startColors = ['blue', 'red', 'green', 'yellow', 'pink', 'orange'],
+      startColor = startColors[Math.floor(Math.random()*startColors.length)];
+
   var text = new PointText({
       point: view.center,
       justification: 'center',
       fontSize: 75, 
       content: 'MAGIC FOCUS',
-      fillColor: 'blue',
+      fillColor: startColor,
       fontFamily: 'press_start_2pregular'
   });
 
@@ -72,9 +75,10 @@ function mf() {
         startPoint = rect2.bounds.x = startPoint + (1.25 * blockWidth);
       } else {
         view.pause();
+        $('#effing-focus').hide();
+        $('#start-over').show();
       }
-    }, 950); 
-
+    }, 1000); 
   }
 
   runTimeoutLoop();
@@ -82,13 +86,12 @@ function mf() {
   var barDir = 'u',
       sideDir = 'u';
 
-  group.fillColor = 'blue';
   group.opacity = 0.9;
 
   view.onFrame = function(event) {
 
     if (group.opacity >= 0.99) { barDir = 'd'; }
-    else if (group.opacity <= 0.15) { barDir = 'u'; }
+    else if (group.opacity <= 0.20) { barDir = 'u'; }
 
     if (bM.bounds.width > width * 0.1) { sideDir = 'd'; }
     else if (bM.bounds.width <= width * 0.1) { sideDir = 'u'; }
@@ -110,7 +113,6 @@ function mf() {
         groupS.opacity = 0.75;
       }
     }
-
 
     if ( barDir == 'd') { group.opacity -= 0.01; }
     else { group.opacity += 0.01; }
