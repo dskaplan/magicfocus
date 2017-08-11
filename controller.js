@@ -47,15 +47,12 @@ function mf() {
   groupLR.addChildren([lM, rM]);
   groupTB.addChildren([tM, bM]);
 
-  var startColors = ['blue', 'red', 'green', 'yellow', 'pink', 'orange'],
-      startColor = startColors[Math.floor(Math.random()*startColors.length)];
-
   var text = new PointText({
       point: view.center,
       justification: 'center',
       fontSize: 75, 
       content: 'MAGIC FOCUS',
-      fillColor: startColor,
+      fillColor: 'red',
       fontFamily: 'press_start_2pregular'
   });
 
@@ -84,14 +81,14 @@ function mf() {
   runTimeoutLoop();
 
   var barDir = 'u',
-      sideDir = 'u';
-
+      sideDir = 'u',
+      color = 'g';
   group.opacity = 0.9;
 
   view.onFrame = function(event) {
 
     if (group.opacity >= 0.99) { barDir = 'd'; }
-    else if (group.opacity <= 0.20) { barDir = 'u'; }
+    else if (group.opacity <= 0.35) { barDir = 'u'; }
 
     if (bM.bounds.width > width * 0.1) { sideDir = 'd'; }
     else if (bM.bounds.width <= width * 0.1) { sideDir = 'u'; }
@@ -117,9 +114,41 @@ function mf() {
     if ( barDir == 'd') { group.opacity -= 0.01; }
     else { group.opacity += 0.01; }
 
-    text.fillColor.hue += 1;
+    //text.fillColor.hue += 1;
+    text, color = changeColor(text, color);
     group.fillColor = text.fillColor;
     groupS.fillColor = text.fillColor;
 
   }
+}
+
+function changeColor(obj, color) {
+  if (color === 'r') {
+    if (obj.fillColor.red >= 1.0) {
+      color = 'g';
+    } else if (obj.fillColor.blue <= 0) {
+      obj.fillColor.red += 0.01;
+    } else {
+      obj.fillColor.blue -= 0.01;
+    }
+  } else if (color === 'g') {
+    if (obj.fillColor.green >= 1.0) {
+      color = 'b';
+    } else if (obj.fillColor.red <= 0) {
+      obj.fillColor.green += 0.01;
+    } else {
+      obj.fillColor.red -= 0.01;
+    }
+  } else if (color === 'b') {
+    if (obj.fillColor.blue >= 1.0) {
+      color = 'r';
+    } else if (obj.fillColor.green <= 0) {
+      obj.fillColor.blue += 0.01;
+    } else {
+      obj.fillColor.green -= 0.01;
+    }
+  }
+  console.log(obj.fillColor);
+  return obj, color
+
 }
