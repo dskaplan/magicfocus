@@ -15,9 +15,6 @@ html, body {
   background-color: black;
   display: none;
 }
-#start-over {
-  display: none;
-}
 #start-over,
 #intro-text {
   font-family: 'press_start_2pregular', 'monospace';
@@ -39,6 +36,9 @@ html, body {
   justify-content: center;   
   background-color: #393E46;
   color: #EEEEEE;
+}
+#start-over {
+  display: none;
 }
 #tribute {
   font-size: 16px;
