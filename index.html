@@ -7,6 +7,24 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="controller.js?v=7"></script>
   <link rel="stylesheet" type="text/css" href="magicfocus.css?v=7">
+        <script>
+          $( document ).ready(function() {
+          $('html').on('click touchstart', function(){
+            if(paper.projects[0]) {
+              //paper.view.pause();
+            } else {
+              $('#intro-text').remove();
+              $('#effing-focus').show();
+              paper.install(window); 
+              mf();
+            }
+          })
+
+          $('#start-over').on('click touchstart', function() {
+            location.reload();
+          })
+         })
+        </script>
 </head>
 <body>
   <div id='intro-text'> 
@@ -15,23 +33,7 @@
   </div>
   <canvas id="effing-focus"  resize='true'></canvas>
   <div id='start-over'>
-    <span id='refresh-me'>start again</span>
+    <div id='refresh-me'>start again</div>
   </div>
-<script>
-  $('html').on('click touchstart', function(){
-    if(paper.projects[0]) {
-      //paper.view.pause();
-    } else {
-      $('#intro-text').remove();
-      $('#effing-focus').show();
-      paper.install(window); 
-      mf();
-    }
-  })
-
-  $('#start-over').on('click touchstart', function() {
-    location.reload();
-  })
-</script>
 </body>
 </html>

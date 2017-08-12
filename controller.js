@@ -57,7 +57,7 @@ function mf() {
   });
 
   var blockWidth = text.bounds.width / 60,
-      blockHeight = text.bounds.height / 3;
+      blockHeight = text.bounds.height / 2.5;
       size = new Size(blockWidth, blockHeight),
       rect = new Path.Rectangle(new Point(text.bounds.bottomLeft), size),
       endPoint = text.bounds.bottomRight.x - 10,
@@ -74,9 +74,9 @@ function mf() {
       } else {
         view.pause();
         $('#effing-focus').hide();
-        $('#start-over').show();
+        $('#start-over').show().css('display', 'flex');
       }
-    }, 550); 
+    }, 500); 
   }
 
   runTimeoutLoop();
@@ -93,16 +93,14 @@ function mf() {
       if (sideDir == 'u') {
         groupTB.scale(2.5, 1);
         groupLR.scale(1, 2);
+        groupS.opacity = Math.random() < 0.5 ? 1 : 0;
       } else {
         groupTB.scale(0.40, 1);
         groupLR.scale(1, 0.50);
+        groupS.opacity = Math.random() < 0.5 ? 1 : 0;
       }
     }
-    /*
-    if (group.opacity >= 0.99) { barDir = 'd'; }
-    else if (group.opacity <= 0.35) { barDir = 'u'; }
 
-    */
     if (bM.bounds.width > width * 0.1) { sideDir = 'd'; }
     else if (bM.bounds.width <= width * 0.1) { sideDir = 'u'; }
 
@@ -115,11 +113,11 @@ function mf() {
           group.fillColor = 'red';
        }
     } else {
-            if (event.count % 360 === 0) {
+            if (event.count % 395 === 0) {
                 groupS.opacity = 0.75;
                 group.opacity = 0.0
             }
-            if (event.count % 380 === 0) {
+            if (event.count % 415 === 0) {
                     groupS.opacity = 0.0;
                     group.opacity = 1.0
                     if (color == 'b') {
