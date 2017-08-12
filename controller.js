@@ -23,7 +23,7 @@ function mf() {
       rM = lM.clone();
 
   rM.bounds.leftCenter = c;
-  
+
   if (width * 0.05 > height * 0.05) { var squareStart = new Point(width * 0.05, width * 0.05); }
   else { var squareStart = new Point(height * 0.05, height * 0.05); }
 
@@ -50,7 +50,7 @@ function mf() {
   var text = new PointText({
       point: view.center,
       justification: 'center',
-      fontSize: 75, 
+      fontSize: 75,
       content: 'MAGIC FOCUS',
       fillColor: 'red',
       fontFamily: 'press_start_2pregular'
@@ -65,7 +65,7 @@ function mf() {
 
   group.addChildren([groupTB, groupLR, text, rect]);
   group.fillColor = 'red';
-  
+
   function runTimeoutLoop(){
     var interval = setInterval(function() {
       if (startPoint <= endPoint) {
@@ -76,7 +76,7 @@ function mf() {
         $('#effing-focus').hide();
         $('#start-over').show().css('display', 'flex');
       }
-    }, 500); 
+    }, 500);
   }
 
   runTimeoutLoop();
@@ -85,7 +85,7 @@ function mf() {
       sideDir = 'u',
       color = 'r';
   group.opacity = 1.0;
-  groupS.opacity = 0.0;
+  groupS.opacity = Math.random() < 0.5 ? 1 : 0;
 
   view.onFrame = function(event) {
 
@@ -113,59 +113,30 @@ function mf() {
           group.fillColor = 'red';
        }
     } else {
-            if (event.count % 395 === 0) {
-                groupS.opacity = 0.75;
-                group.opacity = 0.0
-            }
-            if (event.count % 415 === 0) {
-                    groupS.opacity = 0.0;
-                    group.opacity = 1.0
-                    if (color == 'b') {
-                            color = 'g';
-                            text.fillColor = 'green';
-                    } else if (color == 'r') {
-                            color = 'b';
-                            text.fillColor = 'blue';
-                    } else if (color == 'g') {
-                            color = 'r';
-                            text.fillColor = 'red';
-                    }
 
-                    group.fillColor = text.fillColor;
-                    groupS.fillColor = text.fillColor;
-            }
+      if (event.count % 395 === 0) {
+        groupS.opacity = 0.75;
+        group.opacity = 0.0
+      }
 
+      if (event.count % 415 === 0) {
+        groupS.opacity = 0.0;
+        group.opacity = 1.0
+
+        if (color == 'b') {
+          color = 'g';
+          text.fillColor = 'green';
+        } else if (color == 'r') {
+          color = 'b';
+          text.fillColor = 'blue';
+        } else if (color == 'g') {
+          color = 'r';
+          text.fillColor = 'red';
         }
-  }
-}
 
-function changeColor(obj, color) {
-  if (color === 'r') {
-    if (obj.fillColor.red >= 1.0) {
-      color = 'g';
-    } else if (obj.fillColor.blue <= 0) {
-      obj.fillColor.red += 0.01;
-    } else {
-      obj.fillColor.blue -= 0.01;
-    }
-  } else if (color === 'g') {
-    if (obj.fillColor.green >= 1.0) {
-      color = 'b';
-    } else if (obj.fillColor.red <= 0) {
-      obj.fillColor.green += 0.01;
-    } else {
-      obj.fillColor.red -= 0.01;
-    }
-  } else if (color === 'b') {
-    if (obj.fillColor.blue >= 1.0) {
-      color = 'r';
-    } else if (obj.fillColor.green <= 0) {
-      obj.fillColor.blue += 0.01;
-    } else {
-      obj.fillColor.green -= 0.01;
+        group.fillColor = text.fillColor;
+        groupS.fillColor = text.fillColor;
+      }
     }
   }
-  console.log(obj.fillColor);
-  return obj, color
-
 }
