@@ -56,42 +56,38 @@ function mf() {
       fontFamily: 'press_start_2pregular'
   });
 
-  var blockWidth = text.bounds.width / 45,
+  var blockWidth = text.bounds.width / 60,
       blockHeight = text.bounds.height / 3;
       size = new Size(blockWidth, blockHeight),
       rect = new Path.Rectangle(new Point(text.bounds.bottomLeft), size),
-      endPoint = text.bounds.bottomRight.x - 20,
+      endPoint = text.bounds.bottomRight.x - 10,
       startPoint = text.bounds.bottomLeft.x;
 
   group.addChildren([groupTB, groupLR, text, rect]);
-
+  group.fillColor = 'red';
+  
   function runTimeoutLoop(){
     var interval = setInterval(function() {
       if (startPoint <= endPoint) {
         var rect2 = rect.clone();
-        startPoint = rect2.bounds.x = startPoint + (1.25 * blockWidth);
+        startPoint = rect2.bounds.x = startPoint + (1.5 * blockWidth);
       } else {
         view.pause();
         $('#effing-focus').hide();
         $('#start-over').show();
       }
-    }, 1000); 
+    }, 550); 
   }
 
   runTimeoutLoop();
 
   var barDir = 'u',
       sideDir = 'u',
-      color = 'g';
-  group.opacity = 0.9;
+      color = 'r';
+  group.opacity = 1.0;
+  groupS.opacity = 0.0;
 
   view.onFrame = function(event) {
-
-    if (group.opacity >= 0.99) { barDir = 'd'; }
-    else if (group.opacity <= 0.35) { barDir = 'u'; }
-
-    if (bM.bounds.width > width * 0.1) { sideDir = 'd'; }
-    else if (bM.bounds.width <= width * 0.1) { sideDir = 'u'; }
 
     if (event.count % 60 === 0) {
       if (sideDir == 'u') {
@@ -102,23 +98,46 @@ function mf() {
         groupLR.scale(1, 0.50);
       }
     }
+    /*
+    if (group.opacity >= 0.99) { barDir = 'd'; }
+    else if (group.opacity <= 0.35) { barDir = 'u'; }
 
-    if (event.count % 100 === 0) {
-      if (groupS.opacity > 0.0) {
-        groupS.opacity = 0;
-      } else {
-        groupS.opacity = 0.75;
-      }
-    }
+    */
+    if (bM.bounds.width > width * 0.1) { sideDir = 'd'; }
+    else if (bM.bounds.width <= width * 0.1) { sideDir = 'u'; }
 
-    if ( barDir == 'd') { group.opacity -= 0.01; }
-    else { group.opacity += 0.01; }
+    if (event.count < 60) {
+       if (event.count == 20) {
+          group.fillColor = 'green';
+       } else if (event.count == 40) {
+          group.fillColor = 'blue';
+       } else if (event.count == 59) {
+          group.fillColor = 'red';
+       }
+    } else {
+            if (event.count % 360 === 0) {
+                groupS.opacity = 0.75;
+                group.opacity = 0.0
+            }
+            if (event.count % 380 === 0) {
+                    groupS.opacity = 0.0;
+                    group.opacity = 1.0
+                    if (color == 'b') {
+                            color = 'g';
+                            text.fillColor = 'green';
+                    } else if (color == 'r') {
+                            color = 'b';
+                            text.fillColor = 'blue';
+                    } else if (color == 'g') {
+                            color = 'r';
+                            text.fillColor = 'red';
+                    }
 
-    //text.fillColor.hue += 1;
-    text, color = changeColor(text, color);
-    group.fillColor = text.fillColor;
-    groupS.fillColor = text.fillColor;
+                    group.fillColor = text.fillColor;
+                    groupS.fillColor = text.fillColor;
+            }
 
+        }
   }
 }
 
