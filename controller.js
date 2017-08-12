@@ -120,7 +120,7 @@ function mf() {
       }
 
       if (event.count % 415 === 0) {
-        groupS.opacity = 0.0;
+        groupS.opacity = Math.random() < 0.5 ? 1 : 0;
         group.opacity = 1.0
 
         if (color == 'b') {
